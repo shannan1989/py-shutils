@@ -1,14 +1,15 @@
 from setuptools import find_packages, setup
 
-with open("requirements.txt", "r") as fh:
-    requires = fh.read().splitlines()
+requires = []
+# with open("requirements.txt", "r") as fh:
+#     requires = fh.read().splitlines()
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
     name="shutils",
-    version="0.0.1",
+    version="0.0.3",
     author="山南",
     author_email="zhangpeichaook@163.com",
     url="https://github.com/shannan1989/py-shutils",
