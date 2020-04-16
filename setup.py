@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="shutils",
-    version="0.0.5",
+    version="0.0.6",
     author="山南",
     author_email="zhangpeichaook@163.com",
     url="https://github.com/shannan1989/py-shutils",
