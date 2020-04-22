@@ -20,23 +20,13 @@ class Settings(object):
         files = []
         path = os.path.dirname(os.path.realpath(sys.argv[0]))
         while True:
-            files.append(os.path.join(path, 'config.ini'))
+            if os.path.exists(os.path.join(path, 'config.ini')):
+                files.append(os.path.join(path, 'config.ini'))
             if path == os.path.dirname(path):
                 break
             path = os.path.dirname(path)
-
-        config = configparser.ConfigParser()
         files.reverse()
-        for i in range(len(files)):
-            if os.path.exists(files[i]) == False:
-                continue
-            config.read(files[i])
-            for section in config.sections():
-                if self.__settings.has_section(section) == False:
-                    self.__settings.add_section(section)
-                for option in config.options(section):
-                    value = config.get(section, option)
-                    self.__settings.set(section, option, value)
+        self.__settings.read(files)
 
-    def get(self, section, option):
-        return self.__settings.get(section, option)
+    def get(self, section, option, **kwargs):
+        return self.__settings.get(section, option, **kwargs)
