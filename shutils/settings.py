@@ -3,18 +3,15 @@ import os
 import sys
 
 
-class Settings(object):
+class Settings(configparser.ConfigParser):
     __instance = None
 
     @classmethod
     def instance(cls, *args, **kwargs):
         if(cls.__instance is None):
             cls.__instance = cls(*args, **kwargs)
+            cls.__instance.__load()
         return cls.__instance
-
-    def __init__(self):
-        self.__settings = configparser.ConfigParser()
-        self.__load()
 
     def __load(self):
         files = []
@@ -26,7 +23,4 @@ class Settings(object):
                 break
             path = os.path.dirname(path)
         files.reverse()
-        self.__settings.read(files)
-
-    def get(self, section, option, **kwargs):
-        return self.__settings.get(section, option, **kwargs)
+        self.read(files)
